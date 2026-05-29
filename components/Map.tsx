@@ -46,13 +46,13 @@ export default function Map() {
           .map((doc) => ({
             id: doc.id,
             ...(doc.data() as DocumentData),
-          }))
+          }) as Complaint)
           .filter(
             (item) =>
               item.status !== "Resolved" &&
               item.latitude &&
               item.longitude
-          ) as Complaint[];
+          );
 
         setComplaints(data);
       }
