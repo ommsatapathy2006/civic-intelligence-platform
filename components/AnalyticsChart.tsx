@@ -26,7 +26,7 @@ const COLORS = [
 
 export default function AnalyticsChart() {
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<{name: string; value: number}[]>([]);
 
   useEffect(() => {
 
@@ -38,9 +38,9 @@ export default function AnalyticsChart() {
           (doc) => doc.data()
         );
 
-        const counts: any = {};
+        const counts: Record<string, number> = {};
 
-        complaints.forEach((complaint: any) => {
+        complaints.forEach((complaint: import('firebase/firestore').DocumentData) => {
 
           const category = complaint.category;
 

@@ -9,7 +9,7 @@ export default function ReportPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-const [image, setImage] = useState<any>(null);
+const [image, setImage] = useState<File | null>(null);
   const handleSubmit = async () => {
 
     try {
@@ -96,8 +96,8 @@ if (image) {
         </select>
 <input
   type="file"
-  onChange={(e: any) =>
-    setImage(e.target.files[0])
+  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+    setImage(e.target.files?.[0] || null)
   }
   className="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-700"
 />

@@ -44,9 +44,9 @@ export default function AITestPage() {
         );
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
 
-      setResult(error.message);
+      setResult((error as Error).message);
 
     } finally {
 

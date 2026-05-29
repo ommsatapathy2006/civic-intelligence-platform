@@ -100,13 +100,13 @@ Rules:
       result: aiResult,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
 
     console.log(error);
 
     return Response.json({
 
-      error: error.message,
+      error: (error as Error).message,
     });
   }
 }

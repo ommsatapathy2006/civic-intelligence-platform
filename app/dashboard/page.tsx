@@ -12,7 +12,7 @@ import { db } from "@/firebase/config";
 export default function DashboardPage() {
 
   const [complaints, setComplaints] =
-    useState<any[]>([]);
+    useState<import('firebase/firestore').DocumentData[]>([]);
 
   const [loading, setLoading] =
     useState(true);
