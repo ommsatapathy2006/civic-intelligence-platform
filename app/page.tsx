@@ -5,9 +5,6 @@ export default function Home() {
         AI Civic Intelligence Platform
       </h1>
 
-      <p className="text-gray-400">
-        Firebase Connected Successfully
-      </p>
     </main>
   );
 }

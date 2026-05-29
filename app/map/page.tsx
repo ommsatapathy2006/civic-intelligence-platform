@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const DynamicMap = dynamic(
   () => import("@/components/Map"),
@@ -12,6 +13,7 @@ const DynamicMap = dynamic(
 
 export default function MapPage() {
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-black text-white p-6">
 
       <h1 className="text-4xl font-bold mb-8">
@@ -23,5 +25,6 @@ export default function MapPage() {
       </div>
 
     </main>
+    </ProtectedRoute>
   );
 }

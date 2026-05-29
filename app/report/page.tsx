@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { db } from "../../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function ReportPage() {
 
@@ -27,15 +28,27 @@ if (image) {
   );
 
   const response = await axios.post(
-
     "https://api.cloudinary.com/v1_1/dajjnirjp/image/upload",
-
     formData
-
   );
 
   imageUrl = response.data.secure_url;
 }
+      let lat = 20.2961;
+      let lng = 85.8245;
+
+      if ("geolocation" in navigator) {
+        try {
+          const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+        } catch (err) {
+          console.warn("Geolocation denied or failed. Using default location.", err);
+        }
+      }
+
       await addDoc(collection(db, "complaints"), {
         title,
         description,
@@ -43,6 +56,8 @@ if (image) {
         imageUrl,
         createdAt: new Date(),
         status: "Pending",
+        latitude: lat,
+        longitude: lng,
       });
 
       alert("Complaint Submitted Successfully");
@@ -60,6 +75,7 @@ if (image) {
   };
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-black text-white p-6">
 
       <h1 className="text-4xl font-bold mb-8">
@@ -111,5 +127,6 @@ if (image) {
       </div>
 
     </main>
+    </ProtectedRoute>
   );
 }

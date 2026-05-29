@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "@/firebase/config";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function DashboardPage() {
 
@@ -58,7 +59,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-
+    <ProtectedRoute>
     <main className="
       min-h-screen
       bg-black
@@ -238,5 +239,6 @@ export default function DashboardPage() {
       )}
 
     </main>
+    </ProtectedRoute>
   );
 }

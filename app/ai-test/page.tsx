@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function AITestPage() {
 
@@ -55,7 +56,7 @@ export default function AITestPage() {
   };
 
   return (
-
+    <ProtectedRoute>
     <main className="min-h-screen bg-black text-white p-10">
 
       <h1 className="text-4xl font-bold mb-8">
@@ -121,5 +122,6 @@ export default function AITestPage() {
       </div>
 
     </main>
+    </ProtectedRoute>
   );
 }
