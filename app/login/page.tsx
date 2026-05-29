@@ -24,9 +24,9 @@ export default function LoginPage() {
     try {
       await signInWithPopup(auth, provider);
       router.push("/dashboard");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Login Failed");
+      alert("Login Failed: " + (error.message || "Unknown error"));
     }
   };
 
